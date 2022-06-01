@@ -14,9 +14,17 @@
         android:theme="@style/Theme.LoginApp"
         tools:targetApi="31">
         <activity
+            android:name=".RegisterActivity"
+            android:exported="false"
+            android:theme="@style/Theme.myLoginApp" />
+        <activity
+            android:name=".LoggedIn"
+            android:exported="false"
+            android:theme="@style/Theme.myLoginApp" />
+        <activity
             android:name=".MainActivity"
-            android:theme="@style/Theme.myLoginApp"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.myLoginApp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
