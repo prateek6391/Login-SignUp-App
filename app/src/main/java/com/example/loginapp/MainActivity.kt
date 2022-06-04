@@ -23,7 +23,9 @@ class MainActivity : AppCompatActivity() {
                         if (task.isSuccessful) {
                             // Sign in success, update UI with the signed-in user's information
                             val intent = Intent(this, LoggedIn::class.java)
+                            intent.putExtra("email",email)
                             startActivity(intent)
+                            finish()
                         } else {
                             // If sign in fails, display a message to the user.
                             Toast.makeText(this, "Authentication failed.",
@@ -43,6 +45,7 @@ class MainActivity : AppCompatActivity() {
         register.setOnClickListener {
             val regIntent = Intent(this, RegisterActivity::class.java)
             startActivity(regIntent)
+            finish()
         }
 
     }
