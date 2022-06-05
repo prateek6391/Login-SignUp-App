@@ -24,7 +24,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:textSize="20sp"
+                android:textSize="24sp"
+                android:fontFamily="casual"
                 android:textStyle="bold"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/black"
@@ -35,7 +36,6 @@
                 android:layout_height="match_parent"
                 android:textSize="20sp"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/black"
                 android:text="Name: Demo" />
             <TextView
                 android:id="@+id/phone"
@@ -43,7 +43,6 @@
                 android:layout_height="match_parent"
                 android:textSize="20sp"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/black"
                 android:text="Phone: Demo" />
             <TextView
                 android:id="@+id/emailLog"
@@ -51,13 +50,12 @@
                 android:layout_height="match_parent"
                 android:textSize="20sp"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/black"
                 android:text="Email: Demo" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Log Out"

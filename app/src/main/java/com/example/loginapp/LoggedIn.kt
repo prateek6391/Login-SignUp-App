@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.activity_logged_in.*
 
 class LoggedIn : AppCompatActivity() {
     private lateinit var db: FirebaseFirestore
@@ -13,20 +14,26 @@ class LoggedIn : AppCompatActivity() {
         setContentView(R.layout.activity_logged_in)
         val sharedPref = this?.getPreferences(Context.MODE_PRIVATE)?:return
         val isLogin = sharedPref.getString("Email", "1")
-        /*val email = intent.getStringExtra("email")
-        if (isLogin=="1"){
-            with(sharedPref.edit()){
-                putString("Email", email)
-                apply()
-            }
-        }else{
+        logout.setOnClickListener {
+            sharedPref.edit().remove("Email").apply()
             var intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         }
-*/
         if (isLogin == "1"){
-
+            var email = intent.getStringExtra("email")
+            if (email!=null){
+                setText(email)
+                with(sharedPref.edit()){
+                    putString("Email", email)
+                    apply()
+                }
+            }
+            else{
+                var intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
         }else{
             setText(isLogin)
         }
@@ -35,9 +42,13 @@ class LoggedIn : AppCompatActivity() {
 
     private fun setText(email: String?) {
         db = FirebaseFirestore.getInstance()
-        db.collection("USERS").document(email.toString()).get()
-            .addOnSuccessListener {
-                tasks->
-            }
+        if (email != null) {
+            db.collection("USERS").document(email).get()
+                .addOnSuccessListener { tasks->
+                    name.text = tasks.get("Name").toString()
+                    phone.text = tasks.get("Phone").toString()
+                    emailLog.text = tasks.get("email").toString()
+                }
+        }
     }
 }
